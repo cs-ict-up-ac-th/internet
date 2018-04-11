@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>fadeOut demo</title>
+  <style>
+  p {
+    font-size: 150%;
+    cursor: pointer;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+      $(function(){
+
+        $( "p" ).click(function() {
+          $( "p" ).fadeOut( "slow" );
+        });
+      });
+    </script>
+
+</head>
+<body>
+ 
+<p>
+  If you click on this paragraph
+  you'll see it just fade away.
+</p>
+ 
+
+ 
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+
+            // Constructor
+            function CAR(n, c, w){
+                this.name   = n;
+                this.color  = c;
+                this.weight = w;
+
+                this.detail = function(msg){
+                    return(msg + this.color + ' ' + this.name );
+                }
+            }
+
+            var honda = new CAR('Honda Jazz', 'Pink', '850 kg.');
+
+            console.log(honda.detail('It is a '));
+
+            //console.log('It is ' + honda.name);
+
+        </script>
+
+    </body>
+</html>

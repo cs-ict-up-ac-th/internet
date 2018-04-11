@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+            function ShowClick(){
+                alert("click");
+            }
+
+            function ShowMove(){
+                alert("mousemove");
+            }
+
+            function ShowCase(){
+                
+            }
+        </script>
+    </head>
+    <body>
+        Please input number:
+        <input type="text" id="txt">
+        <input type="button" id="btn" value="Submit">
+
+        <script>
+            var btn = document.getElementById('btn');
+
+            btn.addEventListener('click', ShowClick);
+
+        </script>
+
+    </body>
+</html>

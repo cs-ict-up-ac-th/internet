@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script>
+            function sum(){
+                var a       = Number(document.getElementById('a').value);
+                var b       = Number(document.getElementById('b').value);
+                var result  = document.getElementById('result');
+                
+                result.value = a + b;
+
+            }
+        </script>
+
+    </head>
+    <body>
+        <form>
+            A = <input type="text" id="a">
+            B = <input type="text" id="b">
+            <input type="button" value="Calculate" onclick="sum();">
+
+            A + B = <input type="text" id="result">
+        </form>
+    </body>
+</html>

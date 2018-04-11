@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <style>
+            p {
+                text-align: center;
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>Person</p>
+        <p>Portfolio</p>
+        
+        <form action="accept.php" method="GET">
+            ID:     <input type="text" name="stu_id"><br>
+            Name:   <input type="text" name="stu_name"><br>
+            Gender: <select name="stu_gender">
+                        <option value="F">Female</option>
+                        <option value="M" selected>Male</option> 
+                    </select><br>
+
+            Status: <input type="radio" name="stu_status" value="0" checked> Single
+                    <input type="radio" name="stu_status" value="1"> Marry
+                    <input type="radio" name="stu_status" value="2"> Divorce
+                    <br>
+
+            Hobby:  <input type="checkbox" name="stu_hobby[]" value="Game"> Game
+                    <input type="checkbox" name="stu_hobby[]" value="TV"> TV
+                    <input type="checkbox" name="stu_hobby[]" value="Shopping"> Shopping
+                    <br>
+
+            <input type="submit" value="Send">
+            <input type="reset" value="Clear">
+        </form>
+    </body>
+</html>
