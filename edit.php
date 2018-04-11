@@ -1,8 +1,23 @@
+<?php
+    require("connectDB.php");
+
+    $id = $_GET['id'];
+
+    $sql = "SELECT EMP_ID, EMP_NAME, EMP_GENDER, DEPT_ID FROM employee WHERE EMP_ID = " . $id;
+
+    echo $sql;
+
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    
+    //echo $row["EMP_NAME"];
+?>
+
 <html>
-    <h1>Employee Information</h1>
+    <h1>Edit Employee Information</h1>
     <body>  
         <form action="update_employee.php" method="GET">
-            ID :    <input type="text" name="emp_id"> <br/>
+            ID :    <input type="text" name="emp_id" value=<?php echo $row["EMP_ID"]; ?>> <br/>
             Name:   <input type="text" name="emp_name"> <br/>
             Gender: <input type="radio" name="emp_gender" value="M" checked>Male
                     <input type="radio" name="emp_gender" value="F">Female <br/>
@@ -15,7 +30,6 @@
         </form>
   
 <?php
-    require("connectDB.php");
 
     $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";
     $result = $conn->query($sql);
