@@ -5,7 +5,7 @@
 
     $sql = "SELECT EMP_ID, EMP_NAME, EMP_GENDER, DEPT_ID FROM employee WHERE EMP_ID = " . $id;
 
-    echo $sql;
+    //echo $sql;
 
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
@@ -14,19 +14,19 @@
 ?>
 
 <html>
-    <h1>Edit Employee Information</h1>
+    <h1>EDIT.PHP</h1>
     <body>  
-        <form action="update_employee.php" method="GET">
-            ID :    <input type="text" name="emp_id" value=<?php echo $row["EMP_ID"]; ?>> <br/>
-            Name:   <input type="text" name="emp_name"> <br/>
-            Gender: <input type="radio" name="emp_gender" value="M" checked>Male
-                    <input type="radio" name="emp_gender" value="F">Female <br/>
+        <form action="update_edit.php" method="GET">
+            ID :    <input type="hidden" name="emp_id" value=<?php echo $row["EMP_ID"]; ?>><?php echo $row["EMP_ID"]; ?> <br/>
+            Name:   <input type="text" name="emp_name" value=<?php echo $row["EMP_NAME"]; ?>> <br/>
+            Gender: <input type="radio" name="emp_gender" value="M" <?php if($row["EMP_GENDER"]=="M") echo "checked"; ?>>Male
+                    <input type="radio" name="emp_gender" value="F" <?php if($row["EMP_GENDER"]=="F") echo "checked"; ?>>Female <br/>
             Department:
                     <select name="dept_id">
-                        <option value="D1">Account</option>
-                        <option value="D2">IT</option>
+                        <option value="D1" <?php if($row["DEPT_ID"]=="D1") echo "selected"; ?>>Account</option>
+                        <option value="D2" <?php if($row["DEPT_ID"]=="D2") echo "selected"; ?>>IT</option>
                     </select> <br/>
-                    <button>Add Employee</button>
+                    <button>Edit Employee</button>
         </form>
   
 <?php

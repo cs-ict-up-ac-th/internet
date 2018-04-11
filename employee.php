@@ -1,5 +1,5 @@
 <html>
-    <h1>Employee Information</h1>
+    <h1>EMPLOYEE.PHP</h1>
     <body>  
         <form action="update_employee.php" method="GET">
             ID :    <input type="text" name="emp_id"> <br/>

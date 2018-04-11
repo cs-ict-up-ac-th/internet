@@ -1,4 +1,6 @@
 <?php
+    //update_employee.php
+    
     require("connectDB.php");
 
     $id = $_GET['emp_id'];
