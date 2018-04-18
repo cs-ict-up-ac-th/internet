@@ -50,13 +50,13 @@
         </form>
 
         <form action="employee.php" method="GET">
-            <input type="text" name="txt_search" id="txt_search">
+            <input type="text" name="txt_search" id="txt_search" value=<?php echo $txt_search; ?>>
 
             <select name="sel_type">
-                <option value=1>EMPLOYEE ID</option>
-                <option value=2>EMPLOYEE NAME</option>
-                <option value=3>GENDER</option>
-                <option value=4>DEPARTMENT</option>
+                <option value=1 <?php if($sel_type=="1") echo "selected"?> >EMPLOYEE ID</option>
+                <option value=2 <?php if($sel_type=="2") echo "selected"?>>EMPLOYEE NAME</option>
+                <option value=3 <?php if($sel_type=="3") echo "selected"?>>GENDER</option>
+                <option value=4 <?php if($sel_type=="4") echo "selected"?>>DEPARTMENT</option>
             </select>
 
             <button name="btn_search">Search</button>
@@ -69,22 +69,20 @@
         $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";            
     }
     else{
-        // FIND BY EMP_ID
-        if($sel_type == 1){
-            $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";
+        
+        $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";
+                 
+        if($sel_type == 1){ // FIND BY EMP_ID
             $sql .= " AND e.EMP_ID = " . $txt_search;
         }
-        // FIND BY EMP_NAME
-        else if($sel_type == 2){
-
+        else if($sel_type == 2){ // FIND BY EMP_NAME
+            $sql .= " AND e.EMP_NAME LIKE '%" . $txt_search . "%'";
         }
-        // FIND BY EMP_GENDER
-        else if($sel_type == 3){
-            
+        else if($sel_type == 3){ // FIND BY EMP_GENDER
+            $sql .= " AND e.EMP_GENDER = '" . $txt_search . "'";            
         }
-        // FIND BY DEPARTMENT_NAME
-        else if($sel_type == 4){
-            
+        else if($sel_type == 4){ // FIND BY DEPARTMENT_NAME
+            $sql .= " AND d.DEPT_NAME = '" . $txt_search . "'";            
         }                
 
     }
