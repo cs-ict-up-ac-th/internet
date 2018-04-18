@@ -1,4 +1,39 @@
+<?php
+    if(isset($_GET['txt_search'])){
+        $txt_search = $_GET['txt_search'];
+        $sel_type   = $_GET['sel_type'];
+    }
+    else{
+        $txt_search = "";
+    }
+    
+?>
+
 <html>
+    
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+        $(document).ready(function() {
+            $("#txt_search1").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        // let it happen, don't do anything
+                        return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+        });      
+      </script>
+    </head>
+
     <h1>EMPLOYEE.PHP</h1>
     <body>  
         <form action="update_employee.php" method="GET">
@@ -13,11 +48,49 @@
                     </select> <br/>
                     <button>Add Employee</button>
         </form>
+
+        <form action="employee.php" method="GET">
+            <input type="text" name="txt_search" id="txt_search">
+
+            <select name="sel_type">
+                <option value=1>EMPLOYEE ID</option>
+                <option value=2>EMPLOYEE NAME</option>
+                <option value=3>GENDER</option>
+                <option value=4>DEPARTMENT</option>
+            </select>
+
+            <button name="btn_search">Search</button>
+        </form>
   
 <?php
     require("connectDB.php");
 
-    $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";
+    if(trim($txt_search) == ""){
+        $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";            
+    }
+    else{
+        // FIND BY EMP_ID
+        if($sel_type == 1){
+            $sql = "SELECT e.EMP_ID, e.EMP_NAME, e.EMP_GENDER, e.DEPT_ID, d.DEPT_NAME from employee AS e, department AS d WHERE e.DEPT_ID = d.DEPT_ID";
+            $sql .= " AND e.EMP_ID = " . $txt_search;
+        }
+        // FIND BY EMP_NAME
+        else if($sel_type == 2){
+
+        }
+        // FIND BY EMP_GENDER
+        else if($sel_type == 3){
+            
+        }
+        // FIND BY DEPARTMENT_NAME
+        else if($sel_type == 4){
+            
+        }                
+
+    }
+
+    echo $sql;
+
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
