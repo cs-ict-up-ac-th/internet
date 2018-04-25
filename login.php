@@ -1,5 +1,6 @@
 <?php
     // login.php
+    echo md5("2345");
 ?>
 
 <html>

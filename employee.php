@@ -1,10 +1,20 @@
 <?php
+    // EMPLOYEE.PHP
+    session_start();    // start session
+
+    if(!isset($_SESSION['userID'])){    // if not authorized login
+        header('location:login.php');
+    }
+
+    echo "Welcome, " . $_SESSION['emp_name'];
+    
     if(isset($_GET['txt_search'])){
         $txt_search = $_GET['txt_search'];
         $sel_type   = $_GET['sel_type'];
     }
     else{
         $txt_search = "";
+        $sel_type   = "";
     }
     
 ?>
